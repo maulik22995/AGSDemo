@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="dataModel"
+            type="com.ags.maulikpract.model.Employee" />
+
+        <variable
+            name="position"
+            type="Integer" />
+
+        <variable
+            name="clickHandler"
+            type="android.view.View.OnClickListener" />
+
+        <import type="android.view.View" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/rootItemConstraintLayoutLinear"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/_2sdp"
+        android:onClick="@{clickHandler}">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/etEmployee"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:hint="@string/hint_employee_email"
+            android:textSize="@dimen/_15ssp"
+            android:text="@={dataModel.email}"
+            android:layout_marginEnd="@dimen/_15sdp"
+            app:layout_constraintEnd_toStartOf="@id/tvRemove"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvValidateMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_10ssp"
+            tools:text="Please enter Email"
+            emailValidater="@{dataModel.email}"
+            app:layout_constraintStart_toStartOf="@id/etEmployee"
+            app:layout_constraintTop_toBottomOf="@id/etEmployee" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvRemove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/red"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toStartOf="@id/switchStates"
+            android:text="@string/lbl_remove"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@id/etEmployee"
+            app:layout_constraintTop_toTopOf="@id/etEmployee" />
+
+
+        <Switch
+            android:id="@+id/switchStates"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_10sdp"
+            android:checked="@{dataModel.isEnabled}"
+            app:layout_constraintBottom_toBottomOf="@id/etEmployee"
+            app:layout_constraintTop_toTopOf="@id/etEmployee"
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:ignore="UseSwitchCompatOrMaterialXml" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
